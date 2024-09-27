@@ -16,7 +16,17 @@ interface MdPreviewProps {
   className?: string;
 }
 
-const Code: React.FC<any> = ({ inline, className, children, ...props }) => {
+interface CodeProps {
+  inline?: boolean;
+  className?: string;
+  children: React.ReactNode;
+}
+const Code: React.FC<CodeProps> = ({
+  inline,
+  className,
+  children,
+  ...props
+}) => {
   const match = /language-(\w+)/.exec(className || "");
   return !inline && match ? (
     <SyntaxHighlighter

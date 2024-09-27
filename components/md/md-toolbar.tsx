@@ -8,9 +8,8 @@ import {
   List,
   ListOrdered,
   Link,
-  Image,
+  Image as ImageIcon,
   Code,
-  ChevronDown,
 } from "lucide-react";
 interface MarkDownToolbarProps {
   onInsert: (text: string) => void;
@@ -49,7 +48,7 @@ function MdToolbar({ onInsert, className }: MarkDownToolbarProps) {
         size="icon"
         onClick={() => insertFormat("![alt text](", ")")}
       >
-        <Image className="h-4 w-4" />
+        <ImageIcon className="h-4 w-4" />
       </Button>
       <Button variant="outline" size="icon" onClick={() => insertFormat("`")}>
         <Code className="h-4 w-4" />
