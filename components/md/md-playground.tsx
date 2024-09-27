@@ -1,81 +1,34 @@
 "use client";
+
+import { useState } from "react";
 import MdEditor from "./md-editor";
 import MdPreview from "./md-preview";
-import { useState } from "react";
 
 function MdPlayGround() {
-  const [markdown, setMarkdown] = useState(`
-## Welcome to Markdown Playground
-
-Start typing your markdown here!
-
-### Features of Markdown
-
-- **Bold text**
-- *Italic text*
-- ~~Strikethrough~~
-
-### Math Examples
-
-Inline math: The equation for the area of a circle is \( A = \pi r^2 \).
-
-Block math:
-
-$$
-E = mc^2
-$$
-
-### Code Blocks
-
-\`\`\`javascript
-function greet() {
-  console.log("Hello, Markdown!");
-}
-\`\`\`
-
-### Lists
-
-1. First item
-2. Second item
-   - Sub item 1
-   - Sub item 2
-
-### Blockquotes
-
-> "Markdown is a lightweight markup language."
-
-### Links and Images
-
-[OpenAI](https://www.openai.com)
-
-![Markdown Logo](https://markdown-here.com/img/icon256.png)
-
-### Tables
-
-| Header 1 | Header 2 |
-|----------|----------|
-| Row 1    | Row 2    |
-| Row 3    | Row 4    |
-
-### Horizontal Rule
-
----
-
-### Task Lists
-
-- [ ] Task 1
-- [x] Task 2 (completed)
-- [ ] Task 3
-  `);
+  const [markdown, setMarkdown] = useState("");
 
   return (
-    <div>
-      <div className="w-1/2">
-        <MdEditor />
-        left
-      </div>
-      <div className="w-1/2">
-        <MdPreview markdown={markdown} />
+    <div className="flex flex-col h-screen px-8  py-24 ">
+      <div className="flex flex-col flex-grow overflow-hidden">
+        <div className="flex flex-grow overflow-hidden">
+          <div className="w-1/2 p-2 overflow-hidden flex flex-col">
+            <div className="flex-grow overflow-hidden rounded-md bg-white/10 backdrop-blur-sm">
+              <MdEditor
+                value={markdown}
+                onChange={(e) => setMarkdown(e.target.value)}
+                className="w-full h-full resize-none bg-transparent p-4 focus:outline-none "
+              />
+            </div>
+          </div>
+          <div className="w-1/2 p-2 overflow-hidden flex flex-col border">
+            <h2 className="text-lg font-semibold text-gray-800  mb-2">
+              Preview
+            </h2>
+            <div className="flex-grow overflow-auto rounded-md bg-white/10 backdrop-blur-sm p-4">
+              <MdPreview markdown={markdown} />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

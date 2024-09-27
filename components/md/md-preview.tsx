@@ -10,7 +10,6 @@ import remarkGemoji from "remark-gemoji";
 import remarkGfm from "remark-gfm";
 import "katex/dist/katex.min.css";
 
-
 interface MdPreviewProps {
   markdown: string;
   className?: string;
@@ -48,7 +47,7 @@ const MdPreview: React.FC<MdPreviewProps> = ({ markdown, className = "" }) => {
 
   return (
     <div
-      className={`prose prose-sm sm:prose lg:prose-lg xl:prose-xl max-w-none ${className}`}
+      className={`prose prose-sm sm:prose lg:prose-lg xl:prose-xl break-words max-w-none ${className} overflow-scroll`}
     >
       <ReactMarkdown
         components={memoizedComponents}
