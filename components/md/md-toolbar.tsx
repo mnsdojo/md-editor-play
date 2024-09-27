@@ -27,9 +27,11 @@ import {
   Table,
   LucideIcon,
 } from "lucide-react";
+import CopyButton from "../ui/copy-button";
 
 interface MarkdownToolbarProps {
   className?: string;
+  text: string;
   onInsert: (text: string) => void;
 }
 
@@ -45,7 +47,10 @@ interface DropdownItem {
   action: () => void;
 }
 
-const MarkdownToolbar: React.FC<MarkdownToolbarProps> = ({ onInsert }) => {
+const MarkdownToolbar: React.FC<MarkdownToolbarProps> = ({
+  onInsert,
+  text,
+}) => {
   const insertFormat = (before: string, after: string = before): void => {
     onInsert(`${before}Your text here${after}`);
   };
@@ -58,12 +63,7 @@ const MarkdownToolbar: React.FC<MarkdownToolbarProps> = ({ onInsert }) => {
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={onClick}
-            className="hover:bg-gray-200"
-          >
+          <Button variant="ghost" size="icon" onClick={onClick}>
             {icon}
           </Button>
         </TooltipTrigger>
@@ -140,7 +140,7 @@ const MarkdownToolbar: React.FC<MarkdownToolbarProps> = ({ onInsert }) => {
   ];
 
   return (
-    <div className="flex flex-wrap items-center gap-1 p-2  border-b border-gray-200 shadow-sm">
+    <div className="flex flex-wrap items-center gap-1 p-2  border shadow-sm">
       {toolbarButtons.map((button, index) => (
         <ToolbarButton key={index} {...button} />
       ))}
@@ -149,7 +149,7 @@ const MarkdownToolbar: React.FC<MarkdownToolbarProps> = ({ onInsert }) => {
 
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" size="sm" className="hover:bg-gray-200">
+          <Button variant="ghost" size="sm">
             Heading <ChevronDown className="ml-1 h-4 w-4" />
           </Button>
         </DropdownMenuTrigger>
@@ -164,7 +164,7 @@ const MarkdownToolbar: React.FC<MarkdownToolbarProps> = ({ onInsert }) => {
 
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" size="sm" className="hover:bg-gray-200">
+          <Button variant="ghost" size="sm">
             Insert <ChevronDown className="ml-1 h-4 w-4" />
           </Button>
         </DropdownMenuTrigger>
@@ -176,6 +176,8 @@ const MarkdownToolbar: React.FC<MarkdownToolbarProps> = ({ onInsert }) => {
             </DropdownMenuItem>
           ))}
         </DropdownMenuContent>
+
+        <CopyButton text={text} />
       </DropdownMenu>
     </div>
   );

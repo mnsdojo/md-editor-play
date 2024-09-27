@@ -58,7 +58,7 @@ const MdPreview: React.FC<MdPreviewProps> = ({ markdown, className = "" }) => {
 
   return (
     <div
-      className={`prose prose-sm sm:prose lg:prose-lg xl:prose-xl break-words max-w-none ${className} overflow-scroll`}
+      className={`prose prose-sm dark:prose-invert sm:prose lg:prose-lg xl:prose-xl break-words max-w-none ${className} overflow-scroll`}
     >
       <ReactMarkdown
         components={memoizedComponents}

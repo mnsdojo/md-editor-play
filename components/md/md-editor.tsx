@@ -1,5 +1,6 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { Textarea } from "../ui/textarea";
 
 interface MdEditorProps {
@@ -13,7 +14,7 @@ function MdEditor({ value, onChange, className }: MdEditorProps) {
     <Textarea
       value={value}
       onChange={onChange}
-      className={`w-full h-[calc(100vh-100px)] ${className}`} // Apply className if provided
+      className={cn("", className)}
       placeholder="Type your markdown here..."
     />
   );
